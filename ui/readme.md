@@ -1,8 +1,18 @@
-# Vue with typescript
+# Nuxt.js x Vue@3 x Typescript 
 
-## Environment
+[referrence](https://qiita.com/navitime_tech/items/0e32ee5954b8a68e457b)
 
-```yaml
-node: v14.15.4
-npm: 6.14.10
+## vue install 
+```bash
+  # update npm version to @7
+  npm install -g npm@7
+  # install vue/cli@3  
+  npm install -g @vue/cli@3
+  vue --version
+  # install vue/cli-init
+  npm install -g @vue/cli-init
+  vue init --version
+  # vue initializer
+  vue init nuxt-community/typescript-template ui
 ```
+
