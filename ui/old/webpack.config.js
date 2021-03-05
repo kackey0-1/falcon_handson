@@ -1,6 +1,10 @@
 const path = require('path')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
+function resolve(dir) {
+  return path.join(__dirname, './', dir)
+}
+
 module.exports = {
   entry: {
     app: './src/index.ts'
@@ -63,6 +67,7 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.ts', '.vue', '.json'],
     alias: {
+      '@': resolve('src'),
       'vue$': 'vue/dist/vue.esm.js'
     }
   },
