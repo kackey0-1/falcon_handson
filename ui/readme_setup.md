@@ -13,6 +13,17 @@
   npm install -g @vue/cli-init
   vue init --version
   # vue initializer
-  vue init nuxt-community/typescript-template ui
+  vue init nuxt-community/typescript-template <direcotry_name>
+  # install libraries
+  cd <direcotry_name>
+  npm install
 ```
+
+## Merit
+- Nuxt.jsとそのテンプレートによる簡単な環境構築
+- TypeScriptによる静的型付けの恩恵
+- Vuetifyによる簡単でリッチなUIの組み立て
+
+
+
 
