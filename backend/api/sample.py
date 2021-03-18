@@ -1,7 +1,6 @@
-import json
 import falcon
-import hooks
-import middleware
+import json
+from hooks import hooks
 
 
 class RootResource(object):
@@ -19,14 +18,3 @@ class ParamsResource(object):
         params = req.params
         resp.body = json.dumps(params)
 
-
-app = falcon.API()
-app.add_route('/', RootResource())
-app.add_route('/params', ParamsResource())
-# app = falcon.API(middleware=[middleware.ExampleMiddleware()])
-
-if __name__ == '__main__':
-    from wsgiref import simple_server
-
-    httpd = simple_server.make_server('127.0.0.1', 8000, app)
-    httpd.serve_forever()
