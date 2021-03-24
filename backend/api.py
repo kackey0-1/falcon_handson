@@ -1,3 +1,4 @@
+from typing import ByteString
 import json
 import falcon
 from .models import Book
@@ -14,7 +15,7 @@ class ImageResource(object):
 
 class BookResource(object):
 
-    def on_get(self, req, resp, book_id):
+    def on_get(self, req: falcon.Request, resp: falcon.Request, book_id: ByteString):
         """
         :param req: A request object
         :param resp: A response object
@@ -28,7 +29,7 @@ class BookResource(object):
         # Finally return 200 response on success
         resp.status = falcon.HTTP_200
 
-    def on_post(self, req, resp):
+    def on_post(self, req: falcon.Request, resp: falcon.Response):
         """
         :param req: A request object
         :param resp: A response object
@@ -40,5 +41,22 @@ class BookResource(object):
         book_obj = Book.objects.create(**book_data)
         resp.body = json.dumps({'book_id': str(book_obj.id), 'message': 'book successfully created'})
         resp.status = falcon.HTTP_200
+
+    def on_put(self, req: falcon.Request, resp: falcon.Response, book_id: ByteString):
+        """
+        :param req: A request object
+        :param resp: A response object
+        :return:
+        """
+        book_data = req.media
+        book_obj = Book.objects.get(id=book_id)
+        book_obj.update(author=book_data.get('author') if book_data.get('author') else book_obj.author,
+                        name=book_data.get('name') if book_data.get('name') else book_obj.name,
+                        isbn=book_data.get('isbn') if book_data.get('isbn') else book_obj.isbn,)
+        resp.body = json.dumps({'book_id': str(book_obj.id), 'message': 'book successfully updated'})
+        resp.status = falcon.HTTP_204
+
+
+
 
 
